@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from taxi_service import settings
+from  django.conf import settings
 
 
 class Manufacturer(models.Model):
@@ -15,8 +15,11 @@ class Manufacturer(models.Model):
 class Driver(AbstractUser):
     license_number = models.CharField(max_length=20, unique=True)
 
+    class Meta:
+        verbose_name = "Drivers"
+
     def __str__(self):
-        return f"{self.username} {self.first_name} {self.last_name} {self.license_number}"
+        return f"{self.username} {self.license_number}"
 
 
 class Car(models.Model):
